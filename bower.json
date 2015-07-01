@@ -1,0 +1,21 @@
+{
+  "name": "emjurra.me",
+  "version": "0.0.0",
+  "authors": [
+    "Eli Murray <emurray@tampabay.com>"
+  ],
+  "license": "All rights reserved",
+  "homepage": "ejmurra.me",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.3.0",
+    "neat": "~1.7.2",
+    "restangular": "~1.5.1"
+  }
+}
