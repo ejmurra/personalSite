@@ -7,6 +7,9 @@ var underscore = require('underscore');
 var concat = require('gulp-concat');
 var underscoreStr = require('underscore.string');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
+var minifyCss = require('gulp-minify-css');
+//var watch = require('gulp-watch');
 
 var exclude = [];
 
@@ -75,3 +78,23 @@ gulp.task("bundle", function() {
         .pipe(uglify())
         .pipe(gulp.dest('./site/public/js'))
 });
+
+gulp.task("sass", function() {
+    gulp.src('./stylesheets/sass/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./site/public/stylesheets'))
+});
+
+gulp.task('css',function(x) {
+    gulp.start('sass');
+    gulp.src('./stylesheets/css/*.css')
+        .pipe(sourcemaps.init())
+        .pipe(minifyCss())
+        .pipe(concat('lib.css'))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./site/public/stylesheets/'))
+})
+
+gulp.task('watch')
